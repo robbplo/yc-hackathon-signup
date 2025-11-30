@@ -61,7 +61,7 @@ return [
          *
          * @example ['ideal', 'creditcard']
          */
-        'method' => [],
+        'method' => ['ideal'],
 
         /**
          * The default url the customer is redirected to after the Mollie first payment checkout screen. Can be
