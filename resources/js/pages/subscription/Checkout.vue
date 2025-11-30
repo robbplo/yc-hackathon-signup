@@ -72,9 +72,8 @@ const planDetails = computed(() => {
             </div>
 
             <Form v-bind="create.form()" v-slot="{ processing }" class="flex flex-col gap-4">
-                <div
-                    class="rounded-lg border border-blue-200 bg-blue-50 p-4 text-sm text-blue-900 dark:border-blue-900 dark:bg-blue-950 dark:text-blue-100"
-                >
+                <div class="rounded-lg border border-blue-200 bg-blue-50 p-4 text-sm text-blue-900
+                    dark:border-blue-900 dark:bg-blue-950 dark:text-blue-100">
                     You will be redirected to Mollie to complete your payment securely.
                 </div>
 
