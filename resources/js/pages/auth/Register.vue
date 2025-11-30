@@ -82,10 +82,91 @@ import { Form, Head } from '@inertiajs/vue3';
                     <InputError :message="errors.password_confirmation" />
                 </div>
 
+                <div class="grid gap-2">
+                    <Label for="plan">Select your plan</Label>
+                    <div class="grid gap-3">
+                        <label
+                            class="relative flex cursor-pointer rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary has-[:checked]:border-primary has-[:checked]:bg-primary/5"
+                        >
+                            <input
+                                type="radio"
+                                name="plan"
+                                value="basic_monthly"
+                                required
+                                :tabindex="5"
+                                class="peer sr-only"
+                            />
+                            <div class="flex w-full items-center justify-between">
+                                <div>
+                                    <div class="font-semibold">Basic</div>
+                                    <div class="text-sm text-muted-foreground">
+                                        Perfect for getting started
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-bold">€9.99</div>
+                                    <div class="text-sm text-muted-foreground">/month</div>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label
+                            class="relative flex cursor-pointer rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary has-[:checked]:border-primary has-[:checked]:bg-primary/5"
+                        >
+                            <input
+                                type="radio"
+                                name="plan"
+                                value="pro_monthly"
+                                required
+                                :tabindex="6"
+                                class="peer sr-only"
+                            />
+                            <div class="flex w-full items-center justify-between">
+                                <div>
+                                    <div class="font-semibold">Pro</div>
+                                    <div class="text-sm text-muted-foreground">
+                                        For growing teams
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-bold">€19.99</div>
+                                    <div class="text-sm text-muted-foreground">/month</div>
+                                </div>
+                            </div>
+                        </label>
+
+                        <label
+                            class="relative flex cursor-pointer rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary has-[:checked]:border-primary has-[:checked]:bg-primary/5"
+                        >
+                            <input
+                                type="radio"
+                                name="plan"
+                                value="enterprise_monthly"
+                                required
+                                :tabindex="7"
+                                class="peer sr-only"
+                            />
+                            <div class="flex w-full items-center justify-between">
+                                <div>
+                                    <div class="font-semibold">Enterprise</div>
+                                    <div class="text-sm text-muted-foreground">
+                                        For large organizations
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-bold">€49.99</div>
+                                    <div class="text-sm text-muted-foreground">/month</div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <InputError :message="errors.plan" />
+                </div>
+
                 <Button
                     type="submit"
                     class="mt-2 w-full"
-                    tabindex="5"
+                    tabindex="8"
                     :disabled="processing"
                     data-test="register-user-button"
                 >
@@ -99,7 +180,7 @@ import { Form, Head } from '@inertiajs/vue3';
                 <TextLink
                     :href="login()"
                     class="underline underline-offset-4"
-                    :tabindex="6"
+                    :tabindex="9"
                     >Log in</TextLink
                 >
             </div>

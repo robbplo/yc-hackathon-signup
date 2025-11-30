@@ -6,14 +6,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Cashier\Billable;
 use Laravel\Cashier\Order\Contracts\ProvidesInvoiceInformation;
+use Laravel\Fortify\TwoFactorAuthenticatable;
 
 class User extends Authenticatable implements ProvidesInvoiceInformation
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, TwoFactorAuthenticatable, Billable;
+    use Billable, HasFactory, Notifiable, TwoFactorAuthenticatable;
 
     /**
      * The attributes that are mass assignable.
@@ -24,6 +24,7 @@ class User extends Authenticatable implements ProvidesInvoiceInformation
         'name',
         'email',
         'password',
+        'selected_plan',
     ];
 
     /**
@@ -53,21 +54,21 @@ class User extends Authenticatable implements ProvidesInvoiceInformation
     }
 
     /**
-    * Get the receiver information for the invoice.
-    * Typically includes the name and some sort of (E-mail/physical) address.
-    *
-    * @return array An array of strings
-    */
+     * Get the receiver information for the invoice.
+     * Typically includes the name and some sort of (E-mail/physical) address.
+     *
+     * @return array An array of strings
+     */
     public function getInvoiceInformation()
     {
         return [$this->name, $this->email];
     }
 
     /**
-    * Get additional information to be displayed on the invoice. Typically a note provided by the customer.
-    *
-    * @return string|null
-    */
+     * Get additional information to be displayed on the invoice. Typically a note provided by the customer.
+     *
+     * @return string|null
+     */
     public function getExtraBillingInformation()
     {
         return null;
