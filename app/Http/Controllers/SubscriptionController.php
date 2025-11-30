@@ -52,14 +52,12 @@ class SubscriptionController extends Controller
             ]);
         }
 
-        // Create subscription with first payment redirect
-        $subscription = $user->newSubscriptionViaMollieCheckout('default', $plan);
+        // Create subscription with first payment
+        $redirectResponse = $user->newSubscriptionViaMollieCheckout('default', $plan)->create();
 
-        // Get the Mollie payment from the subscription builder
-        $payment = $subscription->create();
-
-        // Redirect to Mollie checkout page
-        return redirect($payment->getCheckoutUrl());
+        // Force a full-page redirect (not XHR) to Mollie checkout
+        // This is necessary because Mollie doesn't support CORS for checkout pages
+        return Inertia::location($redirectResponse->getTargetUrl());
     }
 
     /**
