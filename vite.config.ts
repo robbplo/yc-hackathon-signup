@@ -4,6 +4,9 @@ import vue from '@vitejs/plugin-vue';
 import laravel from 'laravel-vite-plugin';
 import { defineConfig } from 'vite';
 
+// Skip Wayfinder generation during Docker build (PHP not available in Node container)
+const skipWayfinder = process.env.WAYFINDER_SKIP_GENERATION === 'true';
+
 export default defineConfig({
     plugins: [
         laravel({
@@ -12,9 +15,10 @@ export default defineConfig({
             refresh: true,
         }),
         tailwindcss(),
-        wayfinder({
+        // Only include wayfinder if not skipped (types are pre-generated during Docker build)
+        ...(!skipWayfinder ? [wayfinder({
             formVariants: true,
-        }),
+        })] : []),
         vue({
             template: {
                 transformAssetUrls: {
